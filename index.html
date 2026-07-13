@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-M6FMYW23CX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-M6FMYW23CX');
+  </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Green2Gro | Controlled Environment Agriculture &amp; Aeroponics</title>
@@ -1244,28 +1252,32 @@
     <div class="reveal rd2">
       <div class="form-card">
         <h3>Send Us a Message</h3>
-        <div id="contactForm">
+        <form id="contactForm" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+          <input type="hidden" name="form-name" value="contact">
+          <p style="position:absolute;left:-9999px;" aria-hidden="true">
+            <label>Leave this field blank: <input name="bot-field" tabindex="-1" autocomplete="off"></label>
+          </p>
           <div class="form-row">
             <div class="form-group">
-              <label>First Name</label>
-              <input type="text" id="fname" placeholder="e.g. John">
+              <label for="fname">First Name</label>
+              <input type="text" id="fname" name="firstName" placeholder="e.g. John" required>
             </div>
             <div class="form-group">
-              <label>Last Name</label>
-              <input type="text" id="lname" placeholder="e.g. Smith">
+              <label for="lname">Last Name</label>
+              <input type="text" id="lname" name="lastName" placeholder="e.g. Smith">
             </div>
           </div>
           <div class="form-group">
-            <label>Email Address</label>
-            <input type="email" id="femail" placeholder="you@example.com">
+            <label for="femail">Email Address</label>
+            <input type="email" id="femail" name="email" placeholder="you@example.com" required>
           </div>
           <div class="form-group">
-            <label>Phone / WhatsApp</label>
-            <input type="tel" id="fphone" placeholder="+27 ...">
+            <label for="fphone">Phone / WhatsApp</label>
+            <input type="tel" id="fphone" name="phone" placeholder="+27 ...">
           </div>
           <div class="form-group">
-            <label>I'm interested in</label>
-            <select id="fservice">
+            <label for="fservice">I'm interested in</label>
+            <select id="fservice" name="service">
               <option value="">Select a service...</option>
               <option>CEA Chamber Design & Build</option>
               <option>Aeroponic Systems</option>
@@ -1276,12 +1288,12 @@
             </select>
           </div>
           <div class="form-group">
-            <label>Message</label>
-            <textarea id="fmsg" placeholder="Tell us about your project, location, scale, and goals..."></textarea>
+            <label for="fmsg">Message</label>
+            <textarea id="fmsg" name="message" placeholder="Tell us about your project, location, scale, and goals..." required></textarea>
           </div>
-          <button class="form-submit" onclick="handleSubmit()">Send Message →</button>
+          <button type="submit" class="form-submit">Send Message →</button>
           <p class="form-note">We respond within 24 hours. Your information stays private.</p>
-        </div>
+        </form>
         <div class="form-success" id="formSuccess">
           <div class="check">✅</div>
           <h4>Message Sent!</h4>
@@ -1430,39 +1442,26 @@
     startAuto();
   })();
 
-  // ── NAV SCROLL ──
-  // ── 3D DRAG (removed) ──
-  // 
-  const scene = document.getElementById('ceaScene');
-  let dragging = false, startX = 0, rotY = -20;
-  scene.addEventListener('mousedown', e => { dragging = true; startX = e.clientX; scene.style.animationPlayState = 'paused'; });
-  window.addEventListener('mouseup',  () => dragging = false);
-  window.addEventListener('mousemove', e => {
-    if (!dragging) return;
-    rotY += (e.clientX - startX) * 0.55;
-    startX = e.clientX;
-    scene.style.transform = `rotateY(${rotY}deg) rotateX(10deg)`;
+  // ── CONTACT FORM (Netlify Forms, AJAX submit) ──
+  const contactFormEl = document.getElementById('contactForm');
+  const formSuccessEl = document.getElementById('formSuccess');
+  contactFormEl.addEventListener('submit', function (e) {
+    e.preventDefault();
+    const submitBtn = contactFormEl.querySelector('.form-submit');
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending…';
+    const body = new URLSearchParams(new FormData(contactFormEl)).toString();
+    fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body })
+      .then(() => {
+        contactFormEl.style.display = 'none';
+        formSuccessEl.style.display = 'block';
+      })
+      .catch(() => {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Send Message →';
+        alert('Sorry, something went wrong sending your message. Please email info@green2gro.co.za or WhatsApp us directly.');
+      });
   });
-
-  // ── CONTACT FORM ──
-  function handleSubmit() {
-    const fname = document.getElementById('fname').value.trim();
-    const femail = document.getElementById('femail').value.trim();
-    const fmsg   = document.getElementById('fmsg').value.trim();
-    if (!fname || !femail || !fmsg) { alert('Please fill in your name, email, and message.'); return; }
-  // Build mailto
-    const subject = encodeURIComponent('Green2Gro Enquiry from ' + fname);
-    const body = encodeURIComponent(
-      'Name: ' + fname + ' ' + document.getElementById('lname').value + '\n' +
-      'Email: ' + femail + '\n' +
-      'Phone: ' + document.getElementById('fphone').value + '\n' +
-      'Service: ' + document.getElementById('fservice').value + '\n\n' +
-      'Message:\n' + fmsg
-    );
-    window.location.href = 'mailto:info@green2gro.co.za?subject=' + subject + '&body=' + body;
-    document.getElementById('contactForm').style.display = 'none';
-    document.getElementById('formSuccess').style.display = 'block';
-  }
 </script>
 </body>
 </html>
