@@ -333,6 +333,7 @@
     .svc-card.featured { background:var(--green-vivid); border-color:transparent; }
     .svc-card.featured:hover { border-color:transparent; }
     .svc-icon { width:48px; height:48px; background:var(--green-light); border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:20px; margin-bottom:20px; }
+    .svc-icon img { width:24px; height:24px; display:block; }
     .svc-card.featured .svc-icon { background:rgba(255,255,255,.18); }
     .svc-card h3 { font-family:'Plus Jakarta Sans',sans-serif; font-weight:700; font-size:17px; color:var(--text-dark); margin-bottom:9px; }
     .svc-card.featured h3 { color:#fff; }
@@ -347,7 +348,8 @@
       display:flex; align-items:flex-start; gap:14px;
       background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:16px 18px;
     }
-    .cea-feat-ico { font-size:18px; flex-shrink:0; margin-top:1px; }
+    .cea-feat-ico { width:32px; height:32px; background:var(--green-light); border-radius:9px; display:flex; align-items:center; justify-content:center; font-size:16px; flex-shrink:0; }
+    .cea-feat-ico img { width:17px; height:17px; display:block; }
     .cea-feat strong { font-family:'Plus Jakarta Sans',sans-serif; font-weight:700; font-size:13px; color:var(--text-dark); display:block; }
     .cea-feat span { font-size:12px; color:var(--text-dim); line-height:1.5; margin-top:2px; display:block; }
 
@@ -362,7 +364,8 @@
     @media(max-width:768px){ .human-grid { grid-template-columns:1fr; } }
     .human-card { background:#fff; border:1px solid rgba(14,110,62,.12); border-radius:16px; padding:32px; transition:transform .25s,box-shadow .25s,border-color .25s; }
     .human-card:hover { transform:translateY(-5px); box-shadow:0 16px 48px rgba(14,110,62,.12); border-color:rgba(14,110,62,.3); }
-    .human-icon { font-size:38px; margin-bottom:16px; display:block; }
+    .human-icon { width:56px; height:56px; background:var(--green-light); border-radius:14px; display:flex; align-items:center; justify-content:center; font-size:26px; margin-bottom:16px; }
+    .human-icon img { width:28px; height:28px; display:block; }
     .human-card h3 { font-family:'Plus Jakarta Sans',sans-serif; font-weight:800; font-size:18px; color:var(--green-deep); margin-bottom:10px; letter-spacing:-.02em; }
     .human-card p { font-size:14px; color:#4a5568; line-height:1.75; margin-bottom:18px; }
     .human-tags { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:20px; }
@@ -391,7 +394,8 @@
       transition:background .3s, border-color .3s, transform .3s;
     }
     .fodder-card:hover { background:rgba(255,255,255,.10); border-color:rgba(168,255,120,.25); transform:translateY(-5px); }
-    .fodder-animal { font-size:36px; margin-bottom:16px; display:block; }
+    .fodder-animal { width:56px; height:56px; background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.12); border-radius:14px; display:flex; align-items:center; justify-content:center; font-size:26px; margin-bottom:16px; }
+    .fodder-animal img { width:30px; height:30px; display:block; }
     .fodder-card h3 { font-family:'Plus Jakarta Sans',sans-serif; font-weight:800; font-size:17px; color:#fff; margin-bottom:10px; letter-spacing:-.02em; }
     .fodder-card p { font-size:13.5px; color:rgba(255,255,255,.6); line-height:1.7; margin-bottom:18px; }
     .fodder-stats { display:flex; flex-direction:column; gap:8px; }
@@ -407,7 +411,8 @@
     .fodder-credit a:hover { border-color:#a8ff78; }
     .fodder-science { display:flex; flex-direction:column; gap:10px; }
     .fsci { display:flex; align-items:flex-start; gap:12px; }
-    .fsci-ico { font-size:16px; flex-shrink:0; margin-top:2px; }
+    .fsci-ico { width:28px; height:28px; background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.12); border-radius:9px; display:flex; align-items:center; justify-content:center; font-size:14px; flex-shrink:0; }
+    .fsci-ico img { width:15px; height:15px; display:block; }
     .fsci p { font-size:13px; color:rgba(255,255,255,.55); line-height:1.6; }
     .fsci p strong { color:rgba(255,255,255,.85); font-size:13px; display:block; margin-bottom:2px; }
     @media(max-width:1100px){ .fodder-grid{grid-template-columns:1fr 1fr;} .fodder-bottom{grid-template-columns:1fr;} }
@@ -518,7 +523,8 @@
     .why-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; }
     .why-card { background:var(--white); border:1px solid var(--border-md); border-radius:20px; padding:30px 26px; transition:transform .3s, box-shadow .3s, border-color .3s, background .3s; }
     .why-card:hover { transform:translateY(-5px); box-shadow:var(--shadow-md); border-color:var(--border-strong); }
-    .why-ico { font-size:28px; margin-bottom:16px; display:block; }
+    .why-ico { width:52px; height:52px; background:var(--green-light); border-radius:14px; display:flex; align-items:center; justify-content:center; font-size:24px; margin-bottom:16px; }
+    .why-ico img { width:26px; height:26px; display:block; }
     .why-card h4 { font-family:'Plus Jakarta Sans',sans-serif; font-weight:700; font-size:15px; color:var(--text-dark); margin-bottom:8px; }
     .why-card p { font-size:13px; color:var(--text-dim); line-height:1.65; }
 
@@ -528,6 +534,7 @@
     .contact-details { margin-top:32px; display:flex; flex-direction:column; gap:14px; }
     .contact-item { display:flex; align-items:center; gap:14px; }
     .contact-ico { width:42px; height:42px; background:var(--green-light); border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:18px; flex-shrink:0; }
+    .contact-ico svg { width:19px; height:19px; }
     .contact-item strong { font-family:'Plus Jakarta Sans',sans-serif; font-weight:700; font-size:13px; color:var(--text-dark); display:block; }
     .contact-item a, .contact-item span { font-size:14px; color:var(--text-dim); text-decoration:none; transition:color .2s; }
     .contact-item a:hover { color:var(--green-vivid); }
@@ -654,7 +661,7 @@
 
     /* ── BETTER WHY CARD HOVER ── */
     .why-card:hover { background:var(--surface); }
-    .why-ico { display:block; transition:transform .3s ease; }
+    .why-ico { transition:transform .3s ease; }
     .why-card:hover .why-ico { transform:scale(1.15) rotate(-5deg); }
 
     /* ── TECH STEP ACTIVE INDICATOR ── */
@@ -873,32 +880,32 @@
   </div>
   <div class="svc-grid">
     <div class="svc-card featured reveal rd1">
-      <div class="svc-icon">🏗️</div>
+      <div class="svc-icon"><img src="/icons/icon-facility.svg" alt="" width="24" height="24"></div>
       <h3>Beheerde-Omgewing Landbou</h3>
       <p>Presisie-ontwerpte groeikamers met volle beheer oor temperatuur, humiditeit, CO₂ en beligting. Ideale groeitoestande vir enige gewas, enige plek op Aarde.</p>
     </div>
     <div class="svc-card reveal rd2">
-      <div class="svc-icon">🌬️</div>
+      <div class="svc-icon"><img src="/icons/icon-sprinkler.svg" alt="" width="24" height="24"></div>
       <h3>Aeroponiese Stelsels</h3>
       <p>Ware aeroponie, nie hidroponie nie: wortels hang in oop lug en word gevoed deur 'n ultrafyn voedingsmis, sonder om ooit in water te staan. Vinniger groei, skoner oes en tot 95% minder water as konvensionele boerdery.</p>
     </div>
     <div class="svc-card reveal rd3">
-      <div class="svc-icon">📐</div>
+      <div class="svc-icon"><img src="/icons/icon-sprout.svg" alt="" width="24" height="24"></div>
       <h3>Vertikale Boerdery</h3>
       <p>Multi-vlak, gestapelde groeirakke wat opbrengs maksimeer binne 'n minimale voetspoor. Tot 10 keer die opbrengs van tradisionele boerdery in dieselfde vloeroppervlakte.</p>
     </div>
     <div class="svc-card reveal rd4">
-      <div class="svc-icon">🎛️</div>
+      <div class="svc-icon"><img src="/icons/icon-custom-design.svg" alt="" width="24" height="24"></div>
       <h3>Pasgemaakte Groeikamer-Ontwerp</h3>
       <p>Doelgemaakte CEA-kamers vir enige gewas, of dit nou groenvoer, blaargroentes, kruie of spesialiteitsplante is. Skaleerbaar vanaf klein bedrywighede tot volskaalse industriële fasiliteite.</p>
     </div>
     <div class="svc-card reveal rd5">
-      <div class="svc-icon">🔧</div>
+      <div class="svc-icon"><img src="/icons/icon-support.svg" alt="" width="24" height="24"></div>
       <h3>Installasie & Ondersteuning</h3>
       <p>Volledige end-tot-end diens wat terrein-assessering, stelselbou, inbedryfstelling, personeelopleiding, afstandmonitering en deurlopende onderhoud dek.</p>
     </div>
     <div class="svc-card reveal rd6">
-      <div class="svc-icon">♻️</div>
+      <div class="svc-icon"><img src="/icons/icon-leaf.svg" alt="" width="24" height="24"></div>
       <h3>Volhoubaarheidskonsultasie</h3>
       <p>Verminder jou landbou-voetspoor met ons zero-vermorsing-benadering, insluitend sonkrag-integrasie, waterhersirkulasie en geslote-lus voedingstoedieningstelsels.</p>
     </div>
@@ -914,15 +921,15 @@
       <p>Ons CEA-kamers is selfversorgende, presisie-ontwerpte groeistelsels. Temperatuur, humiditeit, voedingstowwe en lig word almal outomaties gemonitor en aangepas, wat toestande perfek hou 24 uur per dag, elke dag van die jaar.</p>
       <div class="cea-feats">
         <div class="cea-feat">
-          <div class="cea-feat-ico">💡</div>
+          <div class="cea-feat-ico"><img src="/icons/icon-led.svg" alt="" width="17" height="17"></div>
           <div><strong>Volspektrum LED-Beligting</strong><span>Afgestem per gewas en groeistadium om die meeste uit elke fotosintese-siklus te kry</span></div>
         </div>
         <div class="cea-feat">
-          <div class="cea-feat-ico">🌬️</div>
+          <div class="cea-feat-ico"><img src="/icons/icon-sprinkler.svg" alt="" width="17" height="17"></div>
           <div><strong>Aeroponiese Mis-stelsel</strong><span>Ultrafyn voedingsmis wat direk op blootgestelde plantwortels toegedien word volgens 'n presiese, getimede siklus</span></div>
         </div>
         <div class="cea-feat">
-          <div class="cea-feat-ico">❄️</div>
+          <div class="cea-feat-ico"><img src="/icons/icon-temperature.svg" alt="" width="17" height="17"></div>
           <div><strong>Presisie Klimaatbeheer</strong><span>Temperatuur, humiditeit en CO₂ word almal outomaties bestuur, dag en nag</span></div>
         </div>
         <div class="cea-feat">
@@ -1058,7 +1065,7 @@
   </div>
   <div class="why-grid">
     <div class="why-card reveal rd1">
-      <span class="why-ico">🌡️</span>
+      <span class="why-ico"><img src="/icons/icon-temperature.svg" alt="" width="26" height="26"></span>
       <h4>Gebou vir Uiterste Klimate</h4>
       <p>Ontwerp en getoets onder sub-Sahara toestande, hanteer ons stelsels hitte, droogte en kragwisselvalligheid wat die meeste ander oplossings op die mark sou laat faal.</p>
     </div>
@@ -1068,12 +1075,12 @@
       <p>Ons tegnologie is gebou volgens internasionale standaarde, en lewer dieselfde vlak van presisie en prestasie wat jy van toonaangewende AgriTech-maatskappye in Europa en Noord-Amerika sou verwag.</p>
     </div>
     <div class="why-card reveal rd3">
-      <span class="why-ico">🤝</span>
+      <span class="why-ico"><img src="/icons/icon-partnership.svg" alt="" width="26" height="26"></span>
       <h4>End-tot-End Vennootskap</h4>
       <p>Ons verkoop nie net toerusting nie. Ons word jou langtermyn groeivennoot, en werk saam met jou van aanvanklike konsep en ontwerp deur opleiding, verfyning en deurlopende ondersteuning.</p>
     </div>
     <div class="why-card reveal rd4">
-      <span class="why-ico">⚡</span>
+      <span class="why-ico"><img src="/icons/icon-roi.svg" alt="" width="26" height="26"></span>
       <h4>Vinnige Opbrengs op Belegging</h4>
       <p>Groei die hele jaar deur, laer insetkoste en premium gewaskwaliteit tel vinnig op. Ons kliënte sien tipies 'n opbrengs op hul belegging binne 12 tot 18 maande na inbedryfstelling.</p>
     </div>
@@ -1089,7 +1096,7 @@
   </div>
   <div class="fodder-grid">
     <div class="fodder-card reveal rd1">
-      <span class="fodder-animal">🐄</span>
+      <span class="fodder-animal"><img src="/icons/icon-cow.svg" alt="" width="30" height="30"></span>
       <h3>Melkbeeste</h3>
       <p>Melkkoeie wat vars ontkiemde groenvoer gevoer word, toon merkbare verbetering in melkopbrengs, vetinhoud en algehele kuddegesondheid. Die hoë verteerbaarheid beteken meer energie gaan na produksie in plaas van vertering. Ons Kanadese suiwelplaas-installasie is bewys van konsep op skaal.</p>
       <div class="fodder-stats">
@@ -1109,7 +1116,7 @@
       </div>
     </div>
     <div class="fodder-card reveal rd3">
-      <span class="fodder-animal">🐂</span>
+      <span class="fodder-animal"><img src="/icons/icon-cow.svg" alt="" width="30" height="30"></span>
       <h3>Vleisbeeste</h3>
       <p>Vleisbeeste op 'n vars groenvoer-aanvulling neem vinniger gewig toe en produseer maerder, hoërgraadse vleis. Die ensiematiese afbraak van stysels na eenvoudiger suikers beteken diere absorbeer meer uit elke kilogram wat hulle eet, wat totale voervolumes verminder sonder om kondisie of afronding in te boet.</p>
       <div class="fodder-stats">
@@ -1119,7 +1126,7 @@
       </div>
     </div>
     <div class="fodder-card reveal rd4">
-      <span class="fodder-animal">🐔</span>
+      <span class="fodder-animal"><img src="/icons/icon-chicken.svg" alt="" width="30" height="30"></span>
       <h3>Pluimvee en Hoenders</h3>
       <p>Hoenders wat vars ontkiemde groenvoer kry, lê meer eiers, produseer ryker eiergele en bereik slaggewig vinniger. Die natuurlike ensiemaktiwiteit in vars spruite verbeter dermgesondheid beduidend, verminder die behoefte aan antibiotika en verlaag mortaliteitsyfers in kommersiële troppe.</p>
       <div class="fodder-stats">
@@ -1139,7 +1146,7 @@
       </div>
     </div>
     <div class="fodder-card reveal rd6">
-      <span class="fodder-animal">🐷</span>
+      <span class="fodder-animal"><img src="/icons/icon-pig.svg" alt="" width="30" height="30"></span>
       <h3>Varke</h3>
       <p>Varke is hoogs doeltreffende omskakelaars van vars groenvoer na liggaamsgewig. Sôe op ontkiemde graan-aanvulling toon verbeterde werpselgroottes, sterker varkies en beter melkproduksie tydens laktasie. Die lewende ensieme in vars voer ondersteun ook 'n gesonder derm-mikrobioom oor alle ouderdomme.</p>
       <div class="fodder-stats">
@@ -1157,8 +1164,8 @@
       <p class="fodder-credit">Gerugsteun deur twee dekades se toegepaste navorsing van ons stigter, <strong>Nick Kemp</strong>, wat sedert 2005 ontkiemde-graan voerstelsels ontwikkel en as bedryfskenner uitgelig is in Landbou.com se <a href="https://www.landbou.com/kundiges/vra-vir-faffa/ontkieming-van-graan-vir-groenvoer-20180309" target="_blank" rel="noopener">"Vra vir Faffa"-rubriek</a> oor die wetenskap van graanontkieming vir veevoer.</p>
     </div>
     <div class="fodder-science reveal rd2">
-      <div class="fsci"><div class="fsci-ico">🌬️</div><div><p><strong>Aeroponies, Nie Hidroponies Nie</strong>Basiese hidroponiese groenvoerbakke staan in 'n vlak laag stilstaande water — presies die toestand wat skimmelrisiko en wisselvallige resultate in ouer groenvoerstelsels veroorsaak. Green2Gro-kamers gebruik eerder ware aeroponie: wortels hang in oop lug en ontvang 'n ultrafyn, presies getimede mis, sonder dat water ooit ophoop.</p></div></div>
-      <div class="fsci"><div class="fsci-ico">🔬</div><div><p><strong>Ensiemryke Lewende Voer</strong>Ontkieming verander graan in 'n baie meer verteerbare voer: verteerbaarheid styg van ongeveer 30% in droë saad tot 90–95% sodra dit ontkiem het, proteïeninhoud styg van omtrent 8% tot 21%, en biomassa-gewig neem toe met tot 620% binne 8 dae.</p></div></div>
+      <div class="fsci"><div class="fsci-ico"><img src="/icons/icon-sprinkler.svg" alt="" width="15" height="15"></div><div><p><strong>Aeroponies, Nie Hidroponies Nie</strong>Basiese hidroponiese groenvoerbakke staan in 'n vlak laag stilstaande water — presies die toestand wat skimmelrisiko en wisselvallige resultate in ouer groenvoerstelsels veroorsaak. Green2Gro-kamers gebruik eerder ware aeroponie: wortels hang in oop lug en ontvang 'n ultrafyn, presies getimede mis, sonder dat water ooit ophoop.</p></div></div>
+      <div class="fsci"><div class="fsci-ico"><img src="/icons/icon-science.svg" alt="" width="15" height="15"></div><div><p><strong>Ensiemryke Lewende Voer</strong>Ontkieming verander graan in 'n baie meer verteerbare voer: verteerbaarheid styg van ongeveer 30% in droë saad tot 90–95% sodra dit ontkiem het, proteïeninhoud styg van omtrent 8% tot 21%, en biomassa-gewig neem toe met tot 620% binne 8 dae.</p></div></div>
       <div class="fsci"><div class="fsci-ico">💧</div><div><p><strong>Jaarronde Voorsiening, Enige Klimaat</strong>Anders as seisoenale weiding, lewer 'n Green2Gro-groenvoerkamer elke enkele dag dieselfde vars, skoon, plaagdodervrye voer — ongeag droogte, ryp of voerpryssprong.</p></div></div>
       <div class="fsci"><div class="fsci-ico">📉</div><div><p><strong>Ontwerp vir Eenheidsekonomie</strong>Basiese bak-gebaseerde opstellings sukkel met koste per kilogram op skaal. Outomatiese klimaatbeheer, presisie-mis en multi-vlak rakke is wat konsekwente, kommersiële-skaal eenheidsekonomie haalbaar maak — nie handmatige bakke en raaiwerk nie.</p></div></div>
     </div>
@@ -1176,7 +1183,7 @@
     <div class="human-grid reveal">
 
       <div class="human-card">
-        <span class="human-icon">🌱</span>
+        <span class="human-icon"><img src="/icons/icon-sprout.svg" alt="" width="28" height="28"></span>
         <h3>Mikrogroentjies</h3>
         <p>Geoes 7–14 dae na ontkieming, bevat mikrogroentjies tot 40x die voedingstowwe van hul volwasse eweknieë. Hoë aanvraag van restaurante, gesondheidskafees en direkte verbruikers.</p>
         <div class="human-tags">
@@ -1202,7 +1209,7 @@
       </div>
 
       <div class="human-card">
-        <span class="human-icon">🥬</span>
+        <span class="human-icon"><img src="/icons/icon-vegetables.svg" alt="" width="28" height="28"></span>
         <h3>Blaargroentes &amp; Kruie</h3>
         <p>Blaarslaai, spinasie, basiliekruid, koljander en meer — die hele jaar deur verbou in vertikale rakke. Ideaal om restaurante, kruidenierswinkels en intekenbokse van konsekwente gehalte te voorsien.</p>
         <div class="human-tags">
@@ -1215,7 +1222,7 @@
       </div>
 
       <div class="human-card">
-        <span class="human-icon">🌾</span>
+        <span class="human-icon"><img src="/icons/icon-cereal.svg" alt="" width="28" height="28"></span>
         <h3>Koringgras &amp; Spruite</h3>
         <p>Vinnig-groeiende gewasse met hoë winsmarges en 'n lojale, gesondheidsbewuste kliëntebasis. Koringgras-skote, ontkiemde lensies en kekererte is eenvoudig om te produseer en maklik om plaaslik te verkoop.</p>
         <div class="human-tags">
@@ -1251,7 +1258,7 @@
           </div>
         </div>
         <div class="contact-item">
-          <div class="contact-ico">💬</div>
+          <div class="contact-ico"><svg viewBox="0 0 24 24" fill="#0e6e3e"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></div>
           <div>
             <strong>WhatsApp</strong>
             <a href="https://wa.me/27828538630?text=Hallo%20Green2Gro%2C%20ek%20wil%20graag%20meer%20leer%20oor%20jul%20CEA-stelsels." target="_blank">Gesels met ons op WhatsApp</a>
