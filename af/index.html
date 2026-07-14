@@ -469,7 +469,8 @@
     @media(max-width:768px){ .fodder-grid{grid-template-columns:1fr;} }
 
     /* ─── ROOM VIEWER ─── */
-    .room-grid { display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center; }
+    .room-grid { display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:start; }
+    .room-side { display:flex; flex-direction:column; gap:28px; }
     .room-viewer { position:relative; border-radius:24px; overflow:hidden; box-shadow:var(--shadow-lg); background:#000; aspect-ratio:4/3; }
     .room-stage { position:relative; width:100%; height:100%; }
     .room-slide { position:absolute; inset:0; opacity:0; transition:opacity .8s ease; }
@@ -519,7 +520,6 @@
     .step-title { font-family:'Plus Jakarta Sans',sans-serif; font-weight:700; font-size:15px; color:var(--text-dark); margin-bottom:6px; }
     .step-desc { font-size:14px; color:var(--text-dim); line-height:1.65; }
     .tech-card {
-      position:sticky; top:110px;
       background:var(--surface); border:1px solid var(--border-md); border-radius:20px; padding:40px;
       overflow:hidden; position:relative;
     }
@@ -552,6 +552,20 @@
     .gi-overlay { position:absolute; inset:0; background:linear-gradient(to top,rgba(9,77,42,.78) 0%,transparent 55%); opacity:0; transition:opacity .3s; display:flex; align-items:flex-end; padding:16px; }
     .gi:hover .gi-overlay { opacity:1; }
     .gi-overlay span { font-family:'Plus Jakarta Sans',sans-serif; font-weight:700; font-size:12px; color:#fff; line-height:1.3; }
+
+    /* ─── LIGHTBOX ─── */
+    .lightbox { position:fixed; inset:0; background:rgba(6,20,10,.92); z-index:500; display:none; align-items:center; justify-content:center; padding:60px; }
+    .lightbox.open { display:flex; }
+    .lightbox-frame { position:relative; max-width:min(1100px,90vw); max-height:85vh; }
+    .lightbox img { display:block; max-width:min(1100px,90vw); max-height:85vh; width:auto; height:auto; object-fit:contain; border-radius:14px; box-shadow:var(--shadow-lg); }
+    .lightbox-cap { text-align:center; color:#fff; font-family:'Plus Jakarta Sans',sans-serif; font-weight:600; font-size:14px; margin-top:16px; }
+    .lightbox-close { position:absolute; top:22px; right:26px; width:42px; height:42px; border-radius:50%; background:rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.2); color:#fff; font-size:20px; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:background .2s; }
+    .lightbox-close:hover { background:rgba(255,255,255,.22); }
+    .lightbox-nav { position:absolute; top:50%; transform:translateY(-50%); width:48px; height:48px; border-radius:50%; background:rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.2); color:#fff; font-size:24px; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:background .2s; }
+    .lightbox-nav:hover { background:rgba(255,255,255,.22); }
+    .lightbox-prev { left:16px; }
+    .lightbox-next { right:16px; }
+    @media(max-width:768px){ .lightbox { padding:20px; } .lightbox-nav { width:38px; height:38px; font-size:20px; } .lightbox-prev { left:6px; } .lightbox-next { right:6px; } .lightbox-close { top:10px; right:10px; } }
 
     /* Grid layout */
     .gi:nth-child(1)  { grid-column:span 7; grid-row:span 2; }
@@ -682,7 +696,6 @@
       .hero { grid-template-columns:1fr; padding:120px 36px 72px; }
       .float-badge { display:none; }
       .mission-grid, .cea-grid, .tech-grid, .contact-grid { grid-template-columns:1fr; }
-      .tech-card { position:static; }
       .why-grid { grid-template-columns:repeat(2,1fr); }
       .footer-top { grid-template-columns:1fr 1fr; gap:36px; }
       .section-pad, .section-pad-sm { padding:80px 36px; }
@@ -972,33 +985,37 @@
   </div>
 </section>
 
-<!-- ─── ROOM VIEWER ─── -->
-<section class="section-pad" id="cea-model">
+<!-- ─── CEA CHAMBER / TECHNOLOGY (merged) ─── -->
+<section class="section-pad tech-bg" id="cea-model">
   <div class="room-grid">
     <div class="reveal">
       <div class="section-tag">Binne die Tegnologie</div>
       <h2>Die CEA-<br><em>Kamer</em></h2>
-      <p>Elke Green2Gro CEA-kamer is 'n selfstandige, presisie-ontwerpte groeistelsel. Temperatuur, humiditeit, voeding en lig word deurlopend en outomaties aangepas, sodat toestande 24 uur per dag — elke dag van die jaar — perfek bly.</p>
+      <p>Elke Green2Gro CEA-kamer is 'n selfstandige, presisie-ontwerpte groeistelsel. Elke veranderlike — temperatuur, humiditeit, CO₂, voeding en lig — word deurlopend gemonitor en outomaties aangepas, sodat toestande 365 dae per jaar perfek bly.</p>
       <div class="cea-feats">
         <div class="cea-feat">
           <div class="cea-feat-ico"><img src="/icons/icon-led.svg" alt="" width="17" height="17"></div>
-          <div><strong>Volspektrum LED-Beligting</strong><span>Afgestem op elke gewas en groeifase, sodat jy die volle waarde uit elke fotosintese-siklus kry</span></div>
+          <div><strong>Volspektrum LED-Beligting</strong><span>Afgestem op elke gewas en groeifase, van ontkieming tot oes, om fotosintese te optimaliseer en groeisiklusse te verkort</span></div>
         </div>
         <div class="cea-feat">
           <div class="cea-feat-ico"><img src="/icons/icon-sprinkler.svg" alt="" width="17" height="17"></div>
-          <div><strong>Aeroponiese Mis-stelsel</strong><span>'n Fyn voedingsmis word op 'n presiese skedule direk op die blootgestelde wortels toegedien</span></div>
+          <div><strong>Aeroponiese Mis-stelsel</strong><span>'n Fyn voedingsmis word op presies getimede intervalle direk op die blootgestelde wortels toegedien — sonder grond, met merkbaar vinniger groei</span></div>
         </div>
         <div class="cea-feat">
           <div class="cea-feat-ico"><img src="/icons/icon-temperature.svg" alt="" width="17" height="17"></div>
-          <div><strong>Presisie Klimaatbeheer</strong><span>Temperatuur, humiditeit en CO₂ bly dag en nag outomaties onder beheer</span></div>
+          <div><strong>Presisie Klimaatbeheer</strong><span>Temperatuur, humiditeit, CO₂ en lugvloei word deurlopend dopgehou en outomaties reggestel, dag en nag</span></div>
         </div>
         <div class="cea-feat">
           <div class="cea-feat-ico">📊</div>
-          <div><strong>Multi-Vlak Rakstelsel</strong><span>Gestapelde groeivlakke wat elke vierkante meter tot sy volle potensiaal benut</span></div>
+          <div><strong>Multi-Vlak Rakstelsel</strong><span>Gestapelde groeivlakke wat elke vierkante meter vloerspasie tot sy volle potensiaal benut</span></div>
+        </div>
+        <div class="cea-feat">
+          <div class="cea-feat-ico">🗂️</div>
+          <div><strong>Data-Gedrewe Optimering</strong><span>Ingeboude sensors versamel deurlopend prestasiedata, sodat ons opbrengs, gewaskwaliteit en doeltreffendheid oor die hele leeftyd van jou stelsel kan bly verfyn</span></div>
         </div>
       </div>
     </div>
-    <div class="reveal rd2">
+    <div class="reveal rd2 room-side">
       <!-- PHOTO ROOM VIEWER -->
       <div class="room-viewer">
         <div class="room-stage" id="roomStage">
@@ -1024,59 +1041,9 @@
         <!-- Live indicator -->
         <div class="room-live"><span class="live-dot"></span> Regstreekse Stelselfoto's</div>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- ─── TECHNOLOGY ─── -->
-<section class="section-pad tech-bg" id="technology">
-  <div class="tech-grid">
-    <div>
-      <div class="reveal">
-        <div class="section-tag">Hoe Dit Werk</div>
-        <h2>Presisie CEA-<br><em>Wetenskap</em></h2>
-      </div>
-      <div class="tech-steps">
-        <div class="tech-step reveal rd1">
-          <div class="step-no">01</div>
-          <div>
-            <div class="step-title">Omgewingsbeheer</div>
-            <div class="step-desc">Temperatuur, humiditeit, CO₂ en lugvloei word deurlopend dopgehou en outomaties reggestel — die resultaat is 'n stabiele omgewing waarin plante 24 uur per dag optimaal presteer.</div>
-          </div>
-        </div>
-        <div class="tech-step reveal rd2">
-          <div class="step-no">02</div>
-          <div>
-            <div class="step-title">Aeroponiese Voedingstoediening</div>
-            <div class="step-desc">'n Fyn voedingsmis tref die blootgestelde wortels op presies getimede intervalle — sonder grond, met tot 95% minder water as tradisionele boerdery, en merkbaar vinniger groei.</div>
-          </div>
-        </div>
-        <div class="tech-step reveal rd3">
-          <div class="step-no">03</div>
-          <div>
-            <div class="step-title">Geoptimeerde Lig-Spektra</div>
-            <div class="step-desc">Ons volspektrum LED-stelsels word van ontkieming tot oes op elke gewas en groeifase afgestem, wat fotosintese optimaliseer en groeisiklusse aansienlik verkort.</div>
-          </div>
-        </div>
-        <div class="tech-step reveal rd4">
-          <div class="step-no">04</div>
-          <div>
-            <div class="step-title">Data-Gedrewe Optimering</div>
-            <div class="step-desc">Ingeboude sensors versamel deurlopend prestasiedata, sodat ons opbrengs, gewaskwaliteit en hulpbronbenutting oor die hele leeftyd van jou stelsel kan bly verfyn.</div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="reveal rd2">
       <div class="tech-card">
         <h3>Ongeëwenaar</h3>
         <p class="sub">CEA vs. Tradisionele Boerdery-Prestasie</p>
-        <div class="metrics">
-          <div class="metric"><div class="v">95<em>%</em></div><div class="l">Waterbesparing</div></div>
-          <div class="metric"><div class="v">10<em>×</em></div><div class="l">Opbrengstoename</div></div>
-          <div class="metric"><div class="v">365</div><div class="l">Groeidae/Jaar</div></div>
-          <div class="metric"><div class="v">0<em>%</em></div><div class="l">Plaagdodergebruik</div></div>
-        </div>
         <div class="bar-row">
           <div class="bar-lbl"><span>Waterdoeltreffendheid</span><strong>95%</strong></div>
           <div class="bar-track"><div class="bar-fill" style="width:95%"></div></div>
@@ -1504,6 +1471,17 @@
   </div>
 </footer>
 
+<!-- ─── LIGHTBOX ─── -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" id="lightboxClose" aria-label="Maak toe">✕</button>
+  <button class="lightbox-nav lightbox-prev" id="lightboxPrev" aria-label="Vorige foto">‹</button>
+  <div class="lightbox-frame">
+    <img id="lightboxImg" src="" alt="">
+    <p class="lightbox-cap" id="lightboxCap"></p>
+  </div>
+  <button class="lightbox-nav lightbox-next" id="lightboxNext" aria-label="Volgende foto">›</button>
+</div>
+
 <!-- ─── WHATSAPP FAB ─── -->
 <a href="https://wa.me/27828538630?text=Hallo%20Green2Gro%2C%20ek%20wil%20graag%20meer%20leer%20oor%20jul%20CEA-boerderystelsels."
    class="wa-fab" target="_blank" rel="noopener" aria-label="Gesels op WhatsApp">
@@ -1574,6 +1552,37 @@
     stage.addEventListener('touchstart', e=>{ tx=e.touches[0].clientX; }, {passive:true});
     stage.addEventListener('touchend',   e=>{ const dx=e.changedTouches[0].clientX-tx; if(Math.abs(dx)>40){ stopAuto(); dx<0?next():goTo(cur-1); startAuto(); } });
     startAuto();
+  })();
+
+  // ── GALLERY LIGHTBOX ──
+  (function(){
+    const items = Array.from(document.querySelectorAll('.gallery-grid .gi'));
+    if (!items.length) return;
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const lightboxCap = document.getElementById('lightboxCap');
+    let cur = 0;
+    function show(i){
+      cur = (i + items.length) % items.length;
+      const img = items[cur].querySelector('img');
+      const cap = items[cur].querySelector('.gi-overlay span');
+      lightboxImg.src = img.src;
+      lightboxImg.alt = img.alt;
+      lightboxCap.textContent = cap ? cap.textContent : '';
+    }
+    function open(i){ show(i); lightbox.classList.add('open'); document.body.style.overflow = 'hidden'; }
+    function close(){ lightbox.classList.remove('open'); document.body.style.overflow = ''; }
+    items.forEach((el, i) => el.addEventListener('click', () => open(i)));
+    document.getElementById('lightboxClose').addEventListener('click', close);
+    document.getElementById('lightboxNext').addEventListener('click', () => show(cur + 1));
+    document.getElementById('lightboxPrev').addEventListener('click', () => show(cur - 1));
+    lightbox.addEventListener('click', (e) => { if (e.target === lightbox) close(); });
+    document.addEventListener('keydown', (e) => {
+      if (!lightbox.classList.contains('open')) return;
+      if (e.key === 'Escape') close();
+      if (e.key === 'ArrowRight') show(cur + 1);
+      if (e.key === 'ArrowLeft') show(cur - 1);
+    });
   })();
 
   // ── CONTACT FORM (Web3Forms, AJAX submit) ──

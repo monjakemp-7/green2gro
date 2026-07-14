@@ -472,7 +472,8 @@
     @media(max-width:768px){ .fodder-grid{grid-template-columns:1fr;} }
 
     /* ─── ROOM VIEWER ─── */
-    .room-grid { display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center; }
+    .room-grid { display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:start; }
+    .room-side { display:flex; flex-direction:column; gap:28px; }
     .room-viewer { position:relative; border-radius:24px; overflow:hidden; box-shadow:var(--shadow-lg); background:#000; aspect-ratio:4/3; }
     .room-stage { position:relative; width:100%; height:100%; }
     .room-slide { position:absolute; inset:0; opacity:0; transition:opacity .8s ease; }
@@ -522,7 +523,6 @@
     .step-title { font-family:'Plus Jakarta Sans',sans-serif; font-weight:700; font-size:15px; color:var(--text-dark); margin-bottom:6px; }
     .step-desc { font-size:14px; color:var(--text-dim); line-height:1.65; }
     .tech-card {
-      position:sticky; top:110px;
       background:var(--surface); border:1px solid var(--border-md); border-radius:20px; padding:40px;
       overflow:hidden; position:relative;
     }
@@ -555,6 +555,20 @@
     .gi-overlay { position:absolute; inset:0; background:linear-gradient(to top,rgba(9,77,42,.78) 0%,transparent 55%); opacity:0; transition:opacity .3s; display:flex; align-items:flex-end; padding:16px; }
     .gi:hover .gi-overlay { opacity:1; }
     .gi-overlay span { font-family:'Plus Jakarta Sans',sans-serif; font-weight:700; font-size:12px; color:#fff; line-height:1.3; }
+
+    /* ─── LIGHTBOX ─── */
+    .lightbox { position:fixed; inset:0; background:rgba(6,20,10,.92); z-index:500; display:none; align-items:center; justify-content:center; padding:60px; }
+    .lightbox.open { display:flex; }
+    .lightbox-frame { position:relative; max-width:min(1100px,90vw); max-height:85vh; }
+    .lightbox img { display:block; max-width:min(1100px,90vw); max-height:85vh; width:auto; height:auto; object-fit:contain; border-radius:14px; box-shadow:var(--shadow-lg); }
+    .lightbox-cap { text-align:center; color:#fff; font-family:'Plus Jakarta Sans',sans-serif; font-weight:600; font-size:14px; margin-top:16px; }
+    .lightbox-close { position:absolute; top:22px; right:26px; width:42px; height:42px; border-radius:50%; background:rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.2); color:#fff; font-size:20px; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:background .2s; }
+    .lightbox-close:hover { background:rgba(255,255,255,.22); }
+    .lightbox-nav { position:absolute; top:50%; transform:translateY(-50%); width:48px; height:48px; border-radius:50%; background:rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.2); color:#fff; font-size:24px; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:background .2s; }
+    .lightbox-nav:hover { background:rgba(255,255,255,.22); }
+    .lightbox-prev { left:16px; }
+    .lightbox-next { right:16px; }
+    @media(max-width:768px){ .lightbox { padding:20px; } .lightbox-nav { width:38px; height:38px; font-size:20px; } .lightbox-prev { left:6px; } .lightbox-next { right:6px; } .lightbox-close { top:10px; right:10px; } }
 
     /* Grid layout */
     .gi:nth-child(1)  { grid-column:span 7; grid-row:span 2; }
@@ -685,7 +699,6 @@
       .hero { grid-template-columns:1fr; padding:120px 36px 72px; }
       .float-badge { display:none; }
       .mission-grid, .cea-grid, .tech-grid, .contact-grid { grid-template-columns:1fr; }
-      .tech-card { position:static; }
       .why-grid { grid-template-columns:repeat(2,1fr); }
       .footer-top { grid-template-columns:1fr 1fr; gap:36px; }
       .section-pad, .section-pad-sm { padding:80px 36px; }
@@ -975,33 +988,37 @@
   </div>
 </section>
 
-<!-- ─── ROOM VIEWER ─── -->
-<section class="section-pad" id="cea-model">
+<!-- ─── CEA CHAMBER / TECHNOLOGY (merged) ─── -->
+<section class="section-pad tech-bg" id="cea-model">
   <div class="room-grid">
     <div class="reveal">
       <div class="section-tag">Inside the Technology</div>
       <h2>The CEA<br><em>Chamber</em></h2>
-      <p>Our CEA chambers are self-contained, precision-engineered growing systems. Temperature, humidity, nutrients and light are all monitored and adjusted automatically, keeping conditions perfect around the clock, every single day of the year.</p>
+      <p>Our CEA chambers are self-contained, precision-engineered growing systems. Every variable — temperature, humidity, CO₂, nutrients and light — is monitored and automatically adjusted, keeping conditions perfect around the clock, 365 days a year.</p>
       <div class="cea-feats">
         <div class="cea-feat">
           <div class="cea-feat-ico"><img src="/icons/icon-led.svg" alt="" width="17" height="17"></div>
-          <div><strong>Full-Spectrum LED Lighting</strong><span>Tuned per crop and growth stage to get the most out of every photosynthesis cycle</span></div>
+          <div><strong>Full-Spectrum LED Lighting</strong><span>Tuned per crop and growth stage, from germination through to harvest, to maximise photosynthetic efficiency and shorten growing cycles</span></div>
         </div>
         <div class="cea-feat">
           <div class="cea-feat-ico"><img src="/icons/icon-sprinkler.svg" alt="" width="17" height="17"></div>
-          <div><strong>Aeroponic Misting System</strong><span>Ultra-fine nutrient mist delivered directly to exposed plant roots on a precise timed cycle</span></div>
+          <div><strong>Aeroponic Misting System</strong><span>Ultra-fine nutrient mist delivered directly to exposed plant roots at precisely timed intervals — no soil, noticeably faster growth</span></div>
         </div>
         <div class="cea-feat">
           <div class="cea-feat-ico"><img src="/icons/icon-temperature.svg" alt="" width="17" height="17"></div>
-          <div><strong>Precision Climate Control</strong><span>Temperature, humidity and CO₂ all managed automatically, day and night</span></div>
+          <div><strong>Precision Climate Control</strong><span>Temperature, humidity, CO₂ and airflow continuously monitored and automatically adjusted, day and night</span></div>
         </div>
         <div class="cea-feat">
           <div class="cea-feat-ico">📊</div>
-          <div><strong>Multi-Tier Racking</strong><span>Stacked growing levels that squeeze more yield out of every square metre</span></div>
+          <div><strong>Multi-Tier Racking</strong><span>Stacked growing levels that squeeze more yield out of every square metre of floor space</span></div>
+        </div>
+        <div class="cea-feat">
+          <div class="cea-feat-ico">🗂️</div>
+          <div><strong>Data-Driven Optimisation</strong><span>Integrated sensors generate continuous performance data, letting us keep refining yield, quality and efficiency over the life of every system</span></div>
         </div>
       </div>
     </div>
-    <div class="reveal rd2">
+    <div class="reveal rd2 room-side">
       <!-- PHOTO ROOM VIEWER -->
       <div class="room-viewer">
         <div class="room-stage" id="roomStage">
@@ -1027,59 +1044,9 @@
         <!-- Live indicator -->
         <div class="room-live"><span class="live-dot"></span> Live System Photos</div>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- ─── TECHNOLOGY ─── -->
-<section class="section-pad tech-bg" id="technology">
-  <div class="tech-grid">
-    <div>
-      <div class="reveal">
-        <div class="section-tag">How It Works</div>
-        <h2>Precision CEA<br><em>Science</em></h2>
-      </div>
-      <div class="tech-steps">
-        <div class="tech-step reveal rd1">
-          <div class="step-no">01</div>
-          <div>
-            <div class="step-title">Environmental Control</div>
-            <div class="step-desc">Temperature, humidity, CO₂ and airflow are continuously monitored and automatically adjusted. The result is a stable, consistent growing environment that keeps plants performing at their best, around the clock.</div>
-          </div>
-        </div>
-        <div class="tech-step reveal rd2">
-          <div class="step-no">02</div>
-          <div>
-            <div class="step-title">Aeroponic Nutrient Delivery</div>
-            <div class="step-desc">Ultra-fine nutrient mist is delivered directly to exposed plant roots at precisely timed intervals. No soil needed, up to 95% less water than traditional farming, and noticeably faster growth rates.</div>
-          </div>
-        </div>
-        <div class="tech-step reveal rd3">
-          <div class="step-no">03</div>
-          <div>
-            <div class="step-title">Optimised Light Spectra</div>
-            <div class="step-desc">Full-spectrum LED arrays are tuned to each crop and growth stage, from germination right through to harvest. This maximises photosynthetic efficiency and significantly shortens growing cycles.</div>
-          </div>
-        </div>
-        <div class="tech-step reveal rd4">
-          <div class="step-no">04</div>
-          <div>
-            <div class="step-title">Data-Driven Optimisation</div>
-            <div class="step-desc">Integrated sensors generate continuous performance data, giving us the ability to keep refining yield, crop quality and resource efficiency over the lifetime of every system we build.</div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="reveal rd2">
       <div class="tech-card">
         <h3>Unmatched</h3>
         <p class="sub">CEA vs. Traditional Farming Performance</p>
-        <div class="metrics">
-          <div class="metric"><div class="v">95<em>%</em></div><div class="l">Water Reduction</div></div>
-          <div class="metric"><div class="v">10<em>×</em></div><div class="l">Yield Increase</div></div>
-          <div class="metric"><div class="v">365</div><div class="l">Growing Days/Year</div></div>
-          <div class="metric"><div class="v">0<em>%</em></div><div class="l">Pesticide Use</div></div>
-        </div>
         <div class="bar-row">
           <div class="bar-lbl"><span>Water Efficiency</span><strong>95%</strong></div>
           <div class="bar-track"><div class="bar-fill" style="width:95%"></div></div>
@@ -1507,6 +1474,17 @@
   </div>
 </footer>
 
+<!-- ─── LIGHTBOX ─── -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" id="lightboxClose" aria-label="Close">✕</button>
+  <button class="lightbox-nav lightbox-prev" id="lightboxPrev" aria-label="Previous image">‹</button>
+  <div class="lightbox-frame">
+    <img id="lightboxImg" src="" alt="">
+    <p class="lightbox-cap" id="lightboxCap"></p>
+  </div>
+  <button class="lightbox-nav lightbox-next" id="lightboxNext" aria-label="Next image">›</button>
+</div>
+
 <!-- ─── WHATSAPP FAB ─── -->
 <a href="https://wa.me/27828538630?text=Hi%20Green2Gro%2C%20I%27d%20like%20to%20learn%20more%20about%20your%20CEA%20farming%20systems."
    class="wa-fab" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
@@ -1577,6 +1555,37 @@
     stage.addEventListener('touchstart', e=>{ tx=e.touches[0].clientX; }, {passive:true});
     stage.addEventListener('touchend',   e=>{ const dx=e.changedTouches[0].clientX-tx; if(Math.abs(dx)>40){ stopAuto(); dx<0?next():goTo(cur-1); startAuto(); } });
     startAuto();
+  })();
+
+  // ── GALLERY LIGHTBOX ──
+  (function(){
+    const items = Array.from(document.querySelectorAll('.gallery-grid .gi'));
+    if (!items.length) return;
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const lightboxCap = document.getElementById('lightboxCap');
+    let cur = 0;
+    function show(i){
+      cur = (i + items.length) % items.length;
+      const img = items[cur].querySelector('img');
+      const cap = items[cur].querySelector('.gi-overlay span');
+      lightboxImg.src = img.src;
+      lightboxImg.alt = img.alt;
+      lightboxCap.textContent = cap ? cap.textContent : '';
+    }
+    function open(i){ show(i); lightbox.classList.add('open'); document.body.style.overflow = 'hidden'; }
+    function close(){ lightbox.classList.remove('open'); document.body.style.overflow = ''; }
+    items.forEach((el, i) => el.addEventListener('click', () => open(i)));
+    document.getElementById('lightboxClose').addEventListener('click', close);
+    document.getElementById('lightboxNext').addEventListener('click', () => show(cur + 1));
+    document.getElementById('lightboxPrev').addEventListener('click', () => show(cur - 1));
+    lightbox.addEventListener('click', (e) => { if (e.target === lightbox) close(); });
+    document.addEventListener('keydown', (e) => {
+      if (!lightbox.classList.contains('open')) return;
+      if (e.key === 'Escape') close();
+      if (e.key === 'ArrowRight') show(cur + 1);
+      if (e.key === 'ArrowLeft') show(cur - 1);
+    });
   })();
 
   // ── CONTACT FORM (Web3Forms, AJAX submit) ──
