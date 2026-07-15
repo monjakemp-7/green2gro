@@ -1608,6 +1608,9 @@
         if (!data.success) throw new Error(data.message || 'Submission failed');
         contactFormEl.style.display = 'none';
         formSuccessEl.style.display = 'block';
+        if (typeof gtag === 'function') {
+          gtag('event', 'generate_lead', { form_id: 'contactForm' });
+        }
       })
       .catch(() => {
         submitBtn.disabled = false;
